@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.45.128:3306/dapl?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+#  redis:
+#    host: 192.168.37.145
+#    port: 6379
+#  cache:
+#    cache-names: current
+#    type: redis
+mybatis:
+  mapper-locations: classpath:com/dapl/dao/mapper/*.xml
+  type-aliases-package: com.dapl.pojo

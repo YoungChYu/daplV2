@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dapl.dao.UserDao">
+    <select id="login" resultType="com.dapl.pojo.UserBean" parameterType="string">
+        select * from dapl_user where name=#{name} and pwd=#{pwd}
+    </select>
+    <insert id="addLog" parameterType="com.dapl.pojo.LoginLogBean">
+        insert into dapl_login_log(login_date,login_ip,user_id) values(#{login_date},#{login_ip},#{user_id})
+    </insert>
+    <select id="findAll" resultType="java.util.HashMap">
+        select
+            l.log_id log_id,
+            l.login_date login_date,
+            l.login_ip login_ip,
+            u.name name
+        from dapl_login_log l
+            left join dapl_user u on u.user_id=l.user_id
+    </select>
+    <select id="findById" parameterType="int" resultType="com.dapl.pojo.Integral">
+        select * from integral where user_id=#{value}
+    </select>
+</mapper>
